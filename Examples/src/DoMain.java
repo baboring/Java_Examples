@@ -7,17 +7,31 @@ public class DoMain {
 	public static void main(String[] args) {
 		
 		
-		double a = 5;
-		int b = 2;
-		
-		System.out.println(a / b);
-		System.out.println(a / 2);
-		System.out.println(5 / 2);
-		System.out.println(5 / 2.0);
+
 	    
 	    DoMain main = new DoMain();
 	    
-	    main.Example_InputOutput();
+	    //main.Example_InputOutput();
+	    //main.Example2();
+	    //main.Example1();
+	    main.Example_String();
+	}
+	
+	void Example_String() {
+		
+		System.out.println("Hello World".length());
+		
+		String city = "San Francisco";
+		int stringLength = city.length();
+		char oneChar = city.charAt(0);
+		String upperCity = city.toUpperCase();
+		String lowerCity = city.toLowerCase();
+		
+		System.out.println(city);
+		System.out.println(stringLength);
+		System.out.format("%c\n",oneChar);
+		System.out.println(upperCity);
+		System.out.println(lowerCity);
 	}
 	
 	void Example_InputOutput()
@@ -51,8 +65,17 @@ public class DoMain {
 	    keyboard.close();
     }
 	
+	// calc
 	void Example2()
     {
+		double a = 5;
+		int b = 2;
+		
+		System.out.println(a / b);
+		System.out.println(a / 2);
+		System.out.println(5 / 2);
+		System.out.println(5 / 2.0);
+		
 		float deposit = 1000;
     	int total = 3;
 	    for( int i=0;i<total;++i) 
