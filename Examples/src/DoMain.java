@@ -1,22 +1,66 @@
+import java.sql.Time;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import Examples.DlgPickNumberGame;
+import Examples.TimeCalculator;
+
 public class DoMain {
 
 	public static void main(String[] args) {
-		
+
 	    DoMain main = new DoMain();
+	    
+	    //(new DlgPickNumberGame()).DoRun();
+
+	    (new TimeCalculator()).DoRun();
 	    
 //	    /main.Example_InputOutput();
 	    //main.Example_Deposit();
-	    main.Example_DepositDialog();
+	    //main.Example_DepositDialog();
 	    //main.Example1();
 	    //main.Example_String();
+	    
+	    //(new Example_InputConsole()).DoRun();
 	}
 	
+	
+	// Deposit & Interest
+	void Example_DepositDialog()
+    {
+
+		String input;
+		double deposit = 0;
+    	int total = 0;
+    	final double interest = 0.05f;
+    	double interestMonth = interest / 12;
+    	
+       	input = JOptionPane.showInputDialog("How much money do you deposit?");
+		deposit = Double.parseDouble(input);
+		
+		// Get number of year to set.
+       	input = JOptionPane.showInputDialog("How many years do you want?");
+		total = Integer.parseInt(input);
+		
+		String output = "----------------------------------------------\n";
+		output += String.format("Deposit : $%4.2f / ",deposit);
+		output += String.format("Interest : %1.0f%% / ",interest * 100);
+		output += String.format("During : %d Year(s)\n",total);
+		output += "-----------expected monthly balance --------------\n";
+		
+	    for( int i=0;i<total * 12;++i) 
+	    {
+	    	deposit += deposit * interestMonth;
+	    	String order = (i < 1) ? "st" : (i < 2) ? "nd" : (i < 3) ? "rd" : "th";
+	    	output += String.format("%d%s month - $%4.2f%n",i+1, order, deposit);
+	    	if( i % 12 == 11)
+	    		output += "----------------------------------------------\n";
+	    }	
+	    JOptionPane.showMessageDialog(null, output);
+    }
 	
 	void Example_String() {
 		
@@ -66,84 +110,9 @@ public class DoMain {
 	    keyboard.close();
     }
 	
-	// calc
-	void Example_Deposit()
-    {
-		double a = 5;
-		int b = 2;
-		
-		System.out.println(a / b);
-		System.out.println(a / 2);
-		System.out.println(5 / 2);
-		System.out.println(5 / 2.0);
-		
-		float deposit = 0;
-    	int total = 0;
-    	final float interest = 0.05f;
-    	float interestMonth = interest / 12;
-    	
-		// Create a Scanner object to read input.
-		Scanner keyboard = new Scanner(System.in);
-		
-		// Get amount of money to deposit.
-		System.out.println("How much money do you deposit? ");
-		deposit = keyboard.nextInt();
-		
-		// Get number of year to set.
-		System.out.println("How many years do you want? ");
-		total = keyboard.nextInt();
-		
-		keyboard.close();
-		System.out.println("-------------------------");
-		System.out.format("Deposit : $%4.2f / ",deposit);
-		System.out.format("Interest : %1.0f%% / ",interest * 100);
-		System.out.format("During : %d Year(s)\n",total);
-		System.out.println("-------------------------");
-		
-	    for( int i=0;i<total * 12;++i) 
-	    {
-	    	deposit += deposit * interestMonth;
-	    	String order = (i < 1) ? "st" : (i < 2) ? "nd" : (i < 3) ? "rd" : "th";
-	    	System.out.format("%d%s month - $%4.2f%n",i+1, order, deposit);
-	    	if( i % 12 == 11)
-	    		System.out.println("-------------------------");
-	    }	
-
-    }
 	
-	// Deposit & Interest
-	void Example_DepositDialog()
-    {
-
-		String input;
-		double deposit = 0;
-    	int total = 0;
-    	final double interest = 0.05f;
-    	double interestMonth = interest / 12;
-    	
-       	input = JOptionPane.showInputDialog("How much money do you deposit?");
-		deposit = Double.parseDouble(input);
-		
-		// Get number of year to set.
-       	input = JOptionPane.showInputDialog("How many years do you want?");
-		total = Integer.parseInt(input);
-		
-		String output = "----------------------------------------------\n";
-		output += String.format("Deposit : $%4.2f / ",deposit);
-		output += String.format("Interest : %1.0f%% / ",interest * 100);
-		output += String.format("During : %d Year(s)\n",total);
-		output += "-----------expected monthly balance --------------\n";
-		
-	    for( int i=0;i<total * 12;++i) 
-	    {
-	    	deposit += deposit * interestMonth;
-	    	String order = (i < 1) ? "st" : (i < 2) ? "nd" : (i < 3) ? "rd" : "th";
-	    	output += String.format("%d%s month - $%4.2f%n",i+1, order, deposit);
-	    	if( i % 12 == 11)
-	    		output += "----------------------------------------------\n";
-	    }	
-	    JOptionPane.showMessageDialog(null, output);
-    }
+	
+	
 	
 	void Example_Performance() 
 	{
